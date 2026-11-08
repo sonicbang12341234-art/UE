@@ -615,8 +615,8 @@ local function patchAndLoad(source)
     -- main.lua에 initialize 함수와 호출이 2개씩 있음 → 두 번째는 스킵
     source = "local __ue_init_done = false\n" .. source
     source = source:gsub(
-        'initialize%(Library%)',
-        'if not __ue_init_done then __ue_init_done = true; initialize(Library) end'
+        '\ninitialize%(Library%)',
+        '\nif not __ue_init_done then __ue_init_done = true; initialize(Library) end'
     )
 
     local fn, err = loadstring(source)
